@@ -1,20 +1,66 @@
 ---
-name: appendix-cross-reference-audit
+name: research-paper-polish
 description: >-
-  Audit a research paper so that every appendix result the main text actually
-  relies on is traceable from the exact claim that uses it. Use this whenever
-  someone is preparing a paper for submission and asks to "check the appendix
-  references", "make sure the main paper points to the appendix", "did we cite
-  every table", "cross-reference audit", or when a supervisor/reviewer asks
-  whether appendix material (tables, robustness checks, decompositions,
-  diagnostics) is pointed to from the relevant place above. Also use it to build
-  a clean appendix-to-main mapping table, to write the exact minimal LaTeX fix
-  for a missing pointer, or to phrase the result for a supervisor. Trigger even
-  when the user just says "is everything in the appendix referenced?" without
-  naming an audit.
+  Help polish and finalize a research paper for submission, and communicate the
+  changes to a supervisor or co-author. Covers four things that come up together
+  when a draft is nearly done: (1) polishing prose for readability and
+  consistency WITHOUT altering the science; (2) auditing appendix
+  cross-references so every appendix result the main text relies on is traceable
+  from the exact claim that uses it; (3) explaining what a table or caption
+  actually means; (4) reporting what changed to a supervisor in the right tone.
+  Use this whenever someone is finishing a paper and says things like "polish
+  this", "make it readable without changing the results", "check the appendix
+  references", "did we cite every table", "what does this caption mean", "what do
+  I tell my supervisor", or asks for a clean chat-pasteable summary of paper
+  status. Trigger even when the request is phrased loosely ("is everything in the
+  appendix referenced?", "make this easier to read for sir").
 ---
 
-# Appendix cross-reference audit
+# Research paper polish
+
+This skill is for the last mile of a paper: the draft is written, the science is
+settled, and now it needs to read well, be traceable, and be explainable to the
+people reviewing it. Four jobs come up together.
+
+The unifying principle across all of them: **improve how the paper reads and how
+findable its evidence is, without ever changing what it claims.** Do not touch
+experiments, numbers, results, or claims. Prose flow, cross-reference pointers,
+and clear explanation are the whole scope.
+
+Pick the section that matches the request:
+
+1. [Polishing prose without changing the science](#1-polishing-prose-without-changing-the-science)
+2. [Appendix cross-reference audit](#2-appendix-cross-reference-audit) — usually the biggest job
+3. [Explaining a table or caption](#3-explaining-a-table-or-caption)
+4. [Reporting to a supervisor](#4-reporting-to-a-supervisor)
+
+---
+
+## 1. Polishing prose without changing the science
+
+When a supervisor wrote parts of the paper (the abstract especially), the goal is
+readability and consistency, not a rewrite. The safe, honest scope:
+
+- Leave author-owned sections you were told not to touch **unchanged** — the
+  abstract is the usual one.
+- Make only *slight* edits to high-stakes framing sections like the introduction.
+- Improve flow, consistency, and wording everywhere else — but change **no**
+  experiments, results, numbers, or claims.
+
+Describe it that way, plainly, so no one thinks you rewrote their work or altered
+the findings:
+
+> I polished the manuscript mainly for readability and consistency. I kept the
+> abstract unchanged and made only very slight edits to the introduction. I
+> cleaned up the rest without changing the experiments, results, or claims — the
+> flow is easier to follow now.
+
+The value of that phrasing is that it makes the boundary explicit: easier to read,
+same science.
+
+---
+
+## 2. Appendix cross-reference audit
 
 The job is narrow and easy to get wrong. A supervisor or reviewer wants to know:
 **when the main paper makes a claim whose supporting detail lives in an appendix,
@@ -25,10 +71,10 @@ The most common mistake is answering a different question: *"is every appendix
 fact repeated in the main paper?"* It should not be. Prompts, generation
 procedures, failed training runs, provenance logs, hashes, and full diagnostic
 dumps belong only in the appendix. Dragging them up would make the paper worse
-and blow the page limit. So the audit is about **traceability of the results
-that are used**, not coverage of everything that exists.
+and blow the page limit. So the audit is about **traceability of the results that
+are used**, not coverage of everything that exists.
 
-## The one rule
+### The one rule
 
 > If a main-text numerical claim, robustness claim, sensitivity claim,
 > diagnostic, decomposition, or methodological compression has its supporting
@@ -36,13 +82,13 @@ that are used**, not coverage of everything that exists.
 > the end of that claim.
 
 If the pointer is already there and specific enough for a reviewer to find the
-evidence, mark it done and move on. Do **not** invent a second citation just so
-every appendix letter shows up in the body.
+evidence, mark it done. Do **not** invent a second citation just so every
+appendix letter shows up in the body.
 
-## What counts as "used" (audit these first)
+### What counts as "used" (audit these first)
 
-These are the claim types that almost always have appendix backing and are the
-ones reviewers actually chase:
+These claim types almost always have appendix backing and are the ones reviewers
+actually chase:
 
 - raw scoring / parser accuracies and scorer comparisons
 - seed-level robustness ("holds across seeds")
@@ -60,14 +106,14 @@ Appendix-only material that needs **no** pointer unless the main text leans on
 it: implementation details, prompt text, hyperparameter dumps, abandoned runs,
 repository/run hashes, provenance tables.
 
-## How to run the audit
+### How to run it
 
-Do it in **both directions** — each direction catches what the other misses.
+Do it in **both directions** — each catches what the other misses.
 
-1. **Forward (appendix → main).** Go appendix by appendix, A, B, C, .... For each
-   one, list its substantive contents, decide which of those the main paper
-   actually uses or summarizes, find where the main text currently references it,
-   and flag any used result with no nearby pointer.
+1. **Forward (appendix → main).** Go appendix by appendix, A, B, C, .... For each,
+   list its substantive contents, decide which the main paper actually uses, find
+   where it currently references them, and flag any used result with no nearby
+   pointer.
 2. **Reverse (main → appendix).** Read pages 1–N and, for every numerical or
    robustness claim, ask whether its support is in an appendix and whether a
    nearby pointer exists.
@@ -81,11 +127,11 @@ Two ready-to-paste audit prompts (a first pass and a stricter re-audit with a
 cross-check table) live in [references/audit-prompts.md](references/audit-prompts.md).
 Hand those to a fresh model when you want an independent second opinion.
 
-## Output: the mapping table
+### Output: the mapping table
 
 Give the user something they can paste into chat and hand to a supervisor. Go
-appendix by appendix so it reads top to bottom. Keep it tight — line numbers,
-not paragraphs.
+appendix by appendix so it reads top to bottom. Keep it tight — line numbers, not
+paragraphs.
 
 ```
 | Appendix | What of it appears in the main paper | Main-paper line(s) | Pointed to? |
@@ -104,7 +150,7 @@ Status legend, and nothing else:
 Sort the real problems (❌) to the top of your summary so the user sees the
 required work first.
 
-## Output: the minimal fix
+### Output: the minimal fix
 
 For every ❌, give exactly this, nothing more:
 
@@ -129,22 +175,27 @@ This reversal holds across seeds (Appendix~\ref{app:addl}), although the Gemma
 adapter shows signs of over-adaptation.
 ```
 
-Never rewrite prose, change a number, alter a claim, or suggest a stylistic
-edit. The smallest insertion that makes the claim traceable is the whole job.
+Never rewrite prose, change a number, alter a claim, or suggest a stylistic edit.
+The smallest insertion that makes the claim traceable is the whole job.
 
-## Explaining a table's caption
+---
+
+## 3. Explaining a table or caption
 
 Supervisors often ask "what does this caption actually mean?" Answer by walking
 one concrete row through the arithmetic and naming what the numbers become
-elsewhere. Show the reduction, then state the mapping.
+elsewhere. Show the reduction, then state the mapping — abstract restatement of
+the caption does not help.
 
-> Table 9 decomposes the R−N and R−I values in Table 3 by retriever. For each
-> seed we compute the difference-in-differences separately for BM25 and dense,
-> average the two within that seed, then report the three-seed mean in Table 3.
-> Example: Bangla Llama-3.2-1B, vs. none: (3.0 + 6.0)/2 = 4.5, which is the
-> +4.5 shown in Table 3.
+> Table 9 decomposes the R−N and R−I values in Table 3 by retriever. For each seed
+> we compute the difference-in-differences separately for BM25 and dense, average
+> the two within that seed, then report the three-seed mean in Table 3. Example:
+> Bangla Llama-3.2-1B, vs. none: (3.0 + 6.0)/2 = 4.5, which is the +4.5 shown in
+> Table 3.
 
-## Reporting to a supervisor
+---
+
+## 4. Reporting to a supervisor
 
 The reader is a busy expert who will actually read what you write, so:
 
@@ -153,7 +204,8 @@ The reader is a busy expert who will actually read what you write, so:
 - Never label anything "simple version" or "easy version for sir" — they see the
   label and it reads as condescending.
 - Don't reproduce the entire mapping when a one-screen summary answers the
-  question. Offer the full table, don't force it.
+  question. Offer the full table, don't force it — trim when told "no need for
+  this much."
 - State plainly what you did and did not touch: "readability and cross-references
   only; no experiments, results, numbers, or claims changed."
 - If nothing is missing, say so directly: "no required missing references."

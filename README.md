@@ -1,35 +1,38 @@
-# appendix-cross-reference-audit
+# research-paper-polish
 
-A Claude skill for a single, narrow, easy-to-botch technical-writing task:
-making sure a research paper's main text **points to** every appendix result it
-actually relies on — without dragging appendix-only material up into the page
-limit.
+A Claude skill for the last mile of a research paper: making it read well, making
+its evidence findable, and explaining what changed — **without ever altering the
+science.**
 
-It answers the question a supervisor or reviewer really asks — *"when the main
-paper uses a result whose detail lives in an appendix, does it cite that
-appendix/table right there?"* — and produces:
+It covers the four jobs that come up together when a draft is nearly done:
 
-- a two-directional audit (appendix → main, and main → appendix),
-- a clean, chat-pasteable mapping table (`✅` / `🟡` / `❌`),
-- the exact minimal LaTeX fix for each missing pointer, with an added-word count,
-- supervisor-ready phrasing.
+1. **Polishing prose** for readability and consistency while leaving experiments,
+   numbers, results, and claims untouched (and describing that boundary honestly).
+2. **Appendix cross-reference audit** — checking that the main text points to every
+   appendix result it actually relies on, without dragging appendix-only material
+   up into the page limit. Produces a chat-pasteable `✅ / 🟡 / ❌` mapping table and
+   the exact minimal LaTeX fix for each missing pointer.
+3. **Explaining a table or caption** by walking one concrete row through the
+   arithmetic.
+4. **Reporting to a supervisor** in the right tone and length.
 
 ## Install
 
 Clone into your Claude skills directory:
 
 ```bash
-git clone https://github.com/<you>/appendix-cross-reference-audit \
-  ~/.claude/skills/appendix-cross-reference-audit
+git clone https://github.com/<you>/research-paper-polish \
+  ~/.claude/skills/research-paper-polish
 ```
 
 Claude loads it automatically when a request matches the description in
-`SKILL.md` (paper prep, "check the appendix references", "did we cite every
-table", cross-reference audits, and the like).
+`SKILL.md` (paper polishing, "make it readable without changing the results",
+appendix cross-reference audits, "what does this caption mean", supervisor
+updates, and the like).
 
 ## Contents
 
-- `SKILL.md` — the skill: the rule, what counts as "used", how to run the audit,
-  and the two output formats.
+- `SKILL.md` — the skill: prose polish, the cross-reference audit, caption
+  explanation, and supervisor communication.
 - `references/audit-prompts.md` — two ready-to-paste prompts for an independent
-  second-opinion audit by a fresh model.
+  second-opinion cross-reference audit by a fresh model.
