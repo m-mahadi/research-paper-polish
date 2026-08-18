@@ -1,211 +1,203 @@
 ---
 name: research-paper-polish
 description: >-
-  Help polish and finalize a research paper for submission, and communicate the
-  changes to a supervisor or co-author. Covers four things that come up together
-  when a draft is nearly done: (1) polishing prose for readability and
-  consistency WITHOUT altering the science; (2) auditing appendix
-  cross-references so every appendix result the main text relies on is traceable
-  from the exact claim that uses it; (3) explaining what a table or caption
-  actually means; (4) reporting what changed to a supervisor in the right tone.
-  Use this whenever someone is finishing a paper and says things like "polish
-  this", "make it readable without changing the results", "check the appendix
-  references", "did we cite every table", "what does this caption mean", "what do
-  I tell my supervisor", or asks for a clean chat-pasteable summary of paper
-  status. Trigger even when the request is phrased loosely ("is everything in the
-  appendix referenced?", "make this easier to read for sir").
+  Line-edit and clarity-audit a research-paper manuscript (ACL/EMNLP/NLLP style
+  and similar) so it reads precisely and easily WITHOUT changing the science.
+  The enemy is cognitive load, not grammar. Use this whenever someone is editing,
+  polishing, or finalizing a paper draft and says things like "polish this
+  section", "make this readable", "line edit this", "is this too dense / a
+  mouthful", "does this sound AI-generated", "reduce cognitive load", "clarity
+  pass", "tighten this without adding length", "check the appendix references /
+  did we cite every table", "what does this caption mean", "% vs percentage
+  points", or "is the paper ready to submit". Also use it to run a whole-
+  manuscript clarity audit, a final freeze/blocker check, or an appendix
+  traceability audit. Trigger even when the request is loose ("make this easier
+  to read", "does this flow", "clean up my methods section").
 ---
 
 # Research paper polish
 
-This skill is for the last mile of a paper: the draft is written, the science is
-settled, and now it needs to read well, be traceable, and be explainable to the
-people reviewing it. Four jobs come up together.
+For the writing stage of a paper: the science is settled and now the prose has to
+carry it. A paper can be technically correct and still exhausting to read if the
+reader must hold too many distinctions in working memory at once. **The problem to
+fix is cognitive load, not grammar.**
 
-The unifying principle across all of them: **improve how the paper reads and how
-findable its evidence is, without ever changing what it claims.** Do not touch
-experiments, numbers, results, or claims. Prose flow, cross-reference pointers,
-and clear explanation are the whole scope.
+The reading experience you are steering toward is:
 
-Pick the section that matches the request:
+> **claim → reason/evidence → implication**
 
-1. [Polishing prose without changing the science](#1-polishing-prose-without-changing-the-science)
-2. [Appendix cross-reference audit](#2-appendix-cross-reference-audit) — usually the biggest job
-3. [Explaining a table or caption](#3-explaining-a-table-or-caption)
-4. [Reporting to a supervisor](#4-reporting-to-a-supervisor)
+not
 
----
+> setup → terminology → qualification → another qualification → result →
+> explanation several sentences later.
 
-## 1. Polishing prose without changing the science
+The whole job is to lower reader effort while keeping the science, the numbers,
+and the level of certainty exactly as they are.
 
-When a supervisor wrote parts of the paper (the abstract especially), the goal is
-readability and consistency, not a rewrite. The safe, honest scope:
+## Do the two stages in order
 
-- Leave author-owned sections you were told not to touch **unchanged** — the
-  abstract is the usual one.
-- Make only *slight* edits to high-stakes framing sections like the introduction.
-- Improve flow, consistency, and wording everywhere else — but change **no**
-  experiments, results, numbers, or claims.
+Facts first, prose second — mixing them means editing sentences you're about to
+delete or that are about to change meaning.
 
-Describe it that way, plainly, so no one thinks you rewrote their work or altered
-the findings:
+1. **Scientific consistency.** Contradictions, unsupported claims,
+   result/caption mismatches, stale text left over from an experiment or table
+   update, wrong numbers, causal overreach. Get the facts stable.
+2. **Readability.** Only once the facts hold: simplify, reorder, cut cognitive
+   load, tighten transitions.
 
-> I polished the manuscript mainly for readability and consistency. I kept the
-> abstract unchanged and made only very slight edits to the introduction. I
-> cleaned up the rest without changing the experiments, results, or claims — the
-> flow is easier to follow now.
+Don't start a stylistic pass while the numbers might still move.
 
-The value of that phrasing is that it makes the boundary explicit: easier to read,
-same science.
+## Non-negotiable constraints
 
----
+**Preserve the science.** Never change experiments, results, model names, numbers,
+statistical meaning, caveats, conclusions, level of certainty, citations,
+methodological meaning, or terminology that carries a precise experimental
+meaning. Never add claims, remove substantive claims, inflate novelty, add
+deployment claims, turn a descriptive finding into a causal one, or hide a null
+or negative result.
 
-## 2. Appendix cross-reference audit
+**Same length or shorter.** The main paper has a strict page budget, so a clarity
+fix that adds words usually isn't a fix. Improve prose by *replacing* a dense
+phrase with a clearer one, moving the explanation before the shorthand, deleting
+redundant setup, combining repeated caveats, and removing process narration — not
+by adding explanation everywhere. Report original and revised word counts.
 
-The job is narrow and easy to get wrong. A supervisor or reviewer wants to know:
-**when the main paper makes a claim whose supporting detail lives in an appendix,
-does the main text explicitly point there?** — e.g. `(Table~\ref{...})`,
-`(Appendix~\ref{...})`.
+**Line editor, not ghostwriter.** Don't rewrite a paragraph just because another
+wording is possible. If a sentence is already clear, precise, and doing useful
+work, the correct output is **KEEP IT**. The purpose is to minimize reader effort,
+not to maximize textual difference.
 
-The most common mistake is answering a different question: *"is every appendix
-fact repeated in the main paper?"* It should not be. Prompts, generation
-procedures, failed training runs, provenance logs, hashes, and full diagnostic
-dumps belong only in the appendix. Dragging them up would make the paper worse
-and blow the page limit. So the audit is about **traceability of the results that
-are used**, not coverage of everything that exists.
+## Per-paragraph diagnostic
 
-### The one rule
+Before touching a paragraph, check that a reader who doesn't know the project can
+answer:
 
-> If a main-text numerical claim, robustness claim, sensitivity claim,
-> diagnostic, decomposition, or methodological compression has its supporting
-> detail in an appendix table or section, there should be an explicit pointer at
-> the end of that claim.
+- What is the immediate claim, and why is this paragraph here?
+- What do they need to know *before* this sentence?
+- Is a technical term used before it is explained?
+- Does the result appear before they understand the comparison?
+- Can they tell what changed, what was held fixed, and why?
+- Is the sentence asking them to hold too many objects at once?
 
-If the pointer is already there and specific enough for a reviewer to find the
-evidence, mark it done. Do **not** invent a second citation just so every
-appendix letter shows up in the body.
+A strong technical paragraph lets the reader answer: **what are we comparing? why?
+what happened? what does that let us conclude?**
 
-### What counts as "used" (audit these first)
+## Style rules
 
-These claim types almost always have appendix backing and are the ones reviewers
-actually chase:
+These are the recurring fixes. Each has a why — apply the reasoning, not the
+letter.
 
-- raw scoring / parser accuracies and scorer comparisons
-- seed-level robustness ("holds across seeds")
-- position / order bias spreads
-- withheld-variable or ablation decompositions
-- confidence intervals behind a headline table
-- sparse-cell counts and coverage caveats
-- retrieval / method decompositions (e.g. BM25 vs dense)
-- difference-in-differences broken out by condition
-- lexical-overlap / leakage robustness
-- translation or annotation audits and their sensitivity checks
-- protocol repairs / chronology when the main text relies on them
+**State the problem, not the process.** Process narration ("We set out to…", "We
+wanted to…", "Our goal was to…", unnecessary "We ask whether…") delays the actual
+point. Open with the scientific claim.
+- Avoid: *We set out to investigate whether fine-tuning helps models use supplied legal context.*
+- Prefer: *Fine-tuning can improve legal-QA accuracy without improving use of supplied law.*
 
-Appendix-only material that needs **no** pointer unless the main text leans on
-it: implementation details, prompt text, hyperparameter dumps, abandoned runs,
-repository/run hashes, provenance tables.
+**Operation first, name second.** Don't introduce a compact name before the reader
+knows what it stands for.
+- Harder: *We use constrained option scoring.*
+- Clearer: *We append `FINAL ANSWER: (` and select the highest-scoring next token among A, B, C, and D. We call this constrained option-letter scoring.*
 
-### How to run it
+The same pattern rescues any dense method term — unpack the idea, *then* name it.
+For a difference-in-differences: first say that a fine-tuned model can improve even
+with no supplied law, so a general gain doesn't show more reliance on law; then
+compare how much context helps after vs. before fine-tuning; then give the formula
+and say what a positive value means. For a rotation criterion: describe rotating
+the answer choices through all four positions and counting an item correct only if
+it's right in every rotation, *then* call it strict consistency.
 
-Do it in **both directions** — each catches what the other misses.
+**No implementation clutter in main prose.** Script names, notebook filenames,
+internal run names, helper-function names (`bootstrap_gold.py`, and the like)
+belong in appendices. The main text discusses the method or analysis, not the file
+that performs it — unless reproducibility specifically requires the name there.
 
-1. **Forward (appendix → main).** Go appendix by appendix, A, B, C, .... For each,
-   list its substantive contents, decide which the main paper actually uses, find
-   where it currently references them, and flag any used result with no nearby
-   pointer.
-2. **Reverse (main → appendix).** Read pages 1–N and, for every numerical or
-   robustness claim, ask whether its support is in an appendix and whether a
-   nearby pointer exists.
+**Name the referent when it's ambiguous.** "this effect", "this result", "the
+method", "it" — if more than one referent is possible, say which one. The reader
+should never have to guess what "this" points back to.
 
-Work from the **compiled PDF plus the LaTeX that is actually `\input`/`\include`d**.
-Ignore stale or unincluded `.tex` files — a pointer that only exists in a file
-the build doesn't use is not a real pointer. Do not assume a previous audit was
-correct; re-read.
+**Concrete numbers over rhetoric.** Numbers reduce the ambiguity that adjectives add.
+- Prefer *the gain is +3.0%* over *the improvement is dramatically smaller.*
+- Prefer *five of six models improve by 14.7–19.3%* over *most models improve substantially.*
 
-Two ready-to-paste audit prompts (a first pass and a stricter re-audit with a
-cross-check table) live in [references/audit-prompts.md](references/audit-prompts.md).
-Hand those to a fresh model when you want an independent second opinion.
+**Preserve precise experimental terms.** Where a word names the experimental object
+(e.g. a legal *section* the model receives, vs. a looser synonym), keep it — a
+casual swap can quietly change what was measured. Likewise keep distinctions the
+experiment depends on: retrieval failing to supply the needed item, versus the
+item being present but unused, versus the evaluation misreading the output, are
+three different things and must not collapse into one generic "model failure".
 
-### Output: the mapping table
+**State each caveat once, compactly.** Don't remove limitations, but don't restate
+the same caution in several rhetorical forms. Say it once, concretely, next to the
+claim it limits.
 
-Give the user something they can paste into chat and hand to a supervisor. Go
-appendix by appendix so it reads top to bottom. Keep it tight — line numbers, not
-paragraphs.
+## The "AI-ish writing" audit
 
-```
-| Appendix | What of it appears in the main paper | Main-paper line(s) | Pointed to? |
-|---|---|---:|---|
-| A — Corpus construction | sources + hierarchy-preserving conversion | 187–189 | ✅ Appendix A |
-| D / Table 8 — Set composition | 795 / 712 / 658 breakdown | 204–207 | ✅ Table 8 |
-| G — Additional results | reversal holds across seeds | 464–465 | ❌ add Appendix G |
-```
+A whole-manuscript pass often turns up one dominant tic: the repeated shape
 
-Status legend, and nothing else:
+> claim → qualification → contrast → cautious conclusion
 
-- ✅ adequately referenced
-- 🟡 optional — a nearby pointer already covers it, a second would be tidy not required
-- ❌ missing — a used result with no nearby pointer; give the fix
+built from constructions like "X, not Y", "supports, but does not prove", "rather
+than", "does not establish", "should not be interpreted as". Any one of these is
+fine. The problem is repetition across the paper — it reads as over-engineered or
+machine-written.
 
-Sort the real problems (❌) to the top of your summary so the user sees the
-required work first.
+- **Preserve** the things that make a paper feel grounded: awkward experimental
+  details, concrete numbers, negative findings, human judgments, limitations,
+  implementation decisions that matter scientifically.
+- **Reduce** rhetorical symmetry, generic section-opening framing, "This finding
+  is important because…" labels, reader-directed interpretation when the evidence
+  already speaks, and repeated contrast templates.
 
-### Output: the minimal fix
+## Explaining a table or caption
 
-For every ❌, give exactly this, nothing more:
+When asked what a caption or table "means", don't restate the columns — show how it
+relates to the main result and walk one concrete row through the arithmetic. A good
+caption test: **it should make clear how an appendix table relates to the main
+table, not merely describe its columns.**
 
-1. the exact current sentence,
-2. the exact supporting appendix / table,
-3. the exact minimal LaTeX change,
-4. the number of words it adds (page limits are real).
+> Table 9 is an extension of Table 3. Table 3 reports the mean of the BM25 and
+> dense DiD values; Table 9 shows BM25 and dense separately alongside that mean.
+> Example — Bangla Llama-3.2-1B, vs. none: BM25 +3.0, dense +6.0, mean +4.5, which
+> is the +4.5 in Table 3.
 
-**Example.**
+If an explanation still needs oral interpretation afterward, the prose or caption
+is too compressed — fix it there, not in conversation.
 
-Current:
+## Appendix traceability
 
-```latex
-This reversal holds across seeds, although the Gemma adapter shows signs of
-over-adaptation.
-```
+Separate from prose polish: when the main text makes a claim whose supporting
+detail lives in an appendix, it should point there explicitly.
 
-Fix (adds 3 words):
+> If a main-text numerical claim, robustness claim, diagnostic, or methodological
+> compression has supporting evidence in an appendix table or section, add a nearby
+> `(Appendix~\ref{…})` / `(Table~\ref{…})` pointer.
 
-```latex
-This reversal holds across seeds (Appendix~\ref{app:addl}), although the Gemma
-adapter shows signs of over-adaptation.
-```
+This is about traceability of results the paper *uses*, not coverage of everything
+the appendix contains — implementation details, prompts, provenance, and failed
+runs can stay appendix-only. Don't add a citation just so every appendix letter
+appears. Audit both directions (appendix → main, and main → appendix) and give,
+for each gap, the exact sentence, the supporting table, and the smallest LaTeX
+insertion. The full audit prompt is in [references/prompts.md](references/prompts.md).
 
-Never rewrite prose, change a number, alter a claim, or suggest a stylistic edit.
-The smallest insertion that makes the claim traceable is the whole job.
+## A note on statistical wording
 
----
+`%` vs. percentage points recurs. Rather than reopening the whole paper for a
+notation rewrite, one manuscript-wide sentence usually settles it: *"All accuracy
+differences are absolute on the 0–100 percentage scale, not relative changes."*
+That keeps the compact `%` notation while fixing the meaning.
 
-## 3. Explaining a table or caption
+## When to stop
 
-Supervisors often ask "what does this caption actually mean?" Answer by walking
-one concrete row through the arithmetic and naming what the numbers become
-elsewhere. Show the reduction, then state the mapping — abstract restatement of
-the caption does not help.
+Broad editing should end once the reader can follow the experiment, terminology is
+stable, and every claim is supported — remaining changes are then just personal
+preference. At that point run the freeze audit (objective blockers only: grammar,
+inconsistencies, number mismatches, stale terminology, wrong references, undefined
+shorthand, claims stronger than the evidence) and **do not open another stylistic
+pass**. Then freeze the prose and send the paper.
 
-> Table 9 decomposes the R−N and R−I values in Table 3 by retriever. For each seed
-> we compute the difference-in-differences separately for BM25 and dense, average
-> the two within that seed, then report the three-seed mean in Table 3. Example:
-> Bangla Llama-3.2-1B, vs. none: (3.0 + 6.0)/2 = 4.5, which is the +4.5 shown in
-> Table 3.
+## Reusable prompts
 
----
-
-## 4. Reporting to a supervisor
-
-The reader is a busy expert who will actually read what you write, so:
-
-- Lead with the verdict and the count: "2 required fixes, both added; the rest
-  were already referenced."
-- Never label anything "simple version" or "easy version for sir" — they see the
-  label and it reads as condescending.
-- Don't reproduce the entire mapping when a one-screen summary answers the
-  question. Offer the full table, don't force it — trim when told "no need for
-  this much."
-- State plainly what you did and did not touch: "readability and cross-references
-  only; no experiments, results, numbers, or claims changed."
-- If nothing is missing, say so directly: "no required missing references."
+[references/prompts.md](references/prompts.md) has four paste-ready prompts for
+handing a pass to a fresh model: (1) section-by-section line editor, (2) whole-
+manuscript clarity audit, (3) final freeze audit, (4) appendix cross-reference
+audit.
