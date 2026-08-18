@@ -7,20 +7,31 @@ not grammar — a paper can be technically correct and still exhausting to read.
 
 ## What it does
 
-- **Line editing** toward `claim → reason/evidence → implication`, same length or
+- **A reader model** the whole skill hangs off: field-competent, but knows nothing
+  about your project, so explain step by step and never name a thing before you've
+  explained it.
+- **The controlling idea** — one insight, one sentence, everything ladders to it,
+  reinforced in the same words.
+- **First-read craft** so the method feels inevitable: open on a granted capability
+  then instance the limitation, a concrete instance before every abstraction, make
+  the contribution look small, sequence experiments by the reader's next doubt,
+  concede inline.
+- **Line editing** toward `claim, reason/evidence, implication`, same length or
   shorter, keeping strong sentences unchanged ("KEEP IT" is a valid output).
-- **A two-stage workflow** — scientific consistency first, readability second — so
+- **A two-stage workflow**: scientific consistency first, readability second, so
   you don't polish sentences that are about to change.
-- **Concrete style rules** with the reasoning behind each: state the problem not
-  the process, operation before shorthand name, no implementation filenames in
-  main prose, name ambiguous referents, concrete numbers over rhetoric, state each
-  caveat once.
-- **An "AI-ish writing" audit** for the repeated `claim → qualification → contrast
-  → caution` tic that makes prose read as machine-written.
-- **Appendix traceability** — checking the main text points to every appendix
-  result it relies on, without over-citing.
-- **Explaining a table/caption** by walking one row through the arithmetic.
-- **A final freeze audit** that looks only for objective blockers and stops.
+- **Structure discipline** — message-first paragraphs, headings that state the
+  finding, and reverse-outlining to catch broken skeletons.
+- **Style rules** with the reasoning behind each: state the problem not the
+  process, operation and function before name, calibrated confidence (assert facts,
+  hedge mechanisms), say what the system did not what it "knew", concrete numbers
+  over rhetoric.
+- **An "AI-ish writing" audit** — a concrete tell-list (rhetorical negation,
+  throat-clearing openers, filler adjectives, fake-depth -ing clauses, the
+  no-em-dash house rule) plus what to preserve vs. reduce.
+- **Appendix traceability**, **caption/float explanation**, the `%` vs.
+  percentage-points fix, and a **final freeze audit** that finds only objective
+  blockers and stops.
 
 ## Install
 
