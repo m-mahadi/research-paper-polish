@@ -34,6 +34,33 @@ not
 The whole job is to lower reader effort while keeping the science, the numbers,
 and the level of certainty exactly as they are.
 
+## Who you're writing for
+
+Anchor every edit to one imagined reader: **competent in the field, but knowing
+nothing about this specific project.** They understand the discipline — the
+methods, the statistics, the general techniques — but they have never seen your
+dataset, your conditions, your control, your metric, or your method. Every rule
+below is a consequence of writing for that person.
+
+So:
+
+- **Explain everything, step by step, in order.** Walk the reader from setup to
+  result. Don't assume they can reconstruct a setup from a sentence three
+  paragraphs later, or fill a gap from knowledge only your team has.
+- **Never name a thing before you've explained it.** No term, method, metric,
+  condition, control, or abbreviation should appear before its meaning is on the
+  page. The reader should never have to infer what a word means from how it's
+  used later.
+- **Unpack before you compress.** Say the idea in plain words first, then
+  introduce the shorthand, name, or formula that stands for it.
+- **Make every sentence easy on the first read.** If the reader would have to go
+  back and re-read it to parse it, it's too dense — split it, reorder it, or cut
+  a distinction out of it.
+
+The test for any paragraph: *could this reader follow what you did without asking
+you a question afterward?* If the answer is no, the prose is still too compressed,
+and the fix goes on the page — not into a verbal explanation.
+
 ## Do the two stages in order
 
 Facts first, prose second — mixing them means editing sentences you're about to
